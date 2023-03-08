@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valinteca Task</title>
+    <link rel="stylesheet" href="css/task.css">
+</head>
+
+<body>
+
+    <div class="nav">
+        <div class="container">
+            <div class="navbar row">
+                <div>
+                    <h2>Valinteca Task</h2>
+                </div>
+
+                <div class="dropdown row">
+                    <a id="dropbtn" class="dropbtn">Cart :
+                        <span id="no_of_product">0</span>
+                    </a>
+                    <div id="dropdown-content" class="dropdown-content">
+                        <div id="cart_products">
+
+                        </div>
+                        <!-- <h3>product 1 : 55$</h3> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div id="products" class="row">
+            <!-- <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <h1>item 1</h1>
+                    <img src="images/gold-coin.png" alt="gold-coin" style="width:100%">
+                    <button class="btn1">quick_view </button>
+                    <h2>
+                        111$
+                    </h2>
+
+
+                    <button class="btn2">Add To Cart </button>
+                </div>
+
+            </div> -->
+
+        </div>
+        <!-- modal -->
+        <div id="modal" class="modal">
+            <span class="close" onclick="close_modal();">&times;</span>
+            <div id="modal_item" class="modal_item">
+                <!-- <h1>item 1</h1>
+                <img src="images/gold-coin.png" alt="gold-coin" style="width:100%">
+                <h2>
+                    111$
+                </h2> -->
+            </div>
+
+        </div>
+    </div>
+    <script src="js/task.js" type="module"></script>
+    <script>
+        let close_modal = () => {
+            document.getElementById("modal").style.display = "none";
+            //alert("a")
+        }
+        document.getElementById("dropbtn").addEventListener('click', function () {
+            let toggle = document.getElementById("dropdown-content").style.display;
+            if (toggle === "none") {
+                document.getElementById("dropdown-content").style.display = "block";
+
+            } else {
+                document.getElementById("dropdown-content").style.display = "none";
+
+
+            }
+        })
+    </script>
+</body>
+
+</html>
