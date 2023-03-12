@@ -54,7 +54,7 @@
         </div>
         <!-- modal -->
         <div id="modal" class="modal">
-            <span class="close" onclick="close_modal();">&times;</span>
+            <span class="close" onclick="closeModal();">&times;</span>
             <div id="modal_item" class="modal_item">
                 <!-- <h1>item 1</h1>
                 <img src="images/gold-coin.png" alt="gold-coin" style="width:100%">
@@ -67,7 +67,7 @@
     </div>
     <script src="js/task.js" type="module"></script>
     <script>
-        let close_modal = () => {
+        const closeModal = () => {
             document.getElementById("modal").style.display = "none";
             //alert("a")
         }

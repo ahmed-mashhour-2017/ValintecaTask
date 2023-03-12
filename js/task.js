@@ -1,19 +1,19 @@
-import products_data from './data.js';
-//console.log(products_data);
-const set_products = (item) => {
+import productsData from './data.js';
+//console.log(productsData);
+const setProducts = (item) => {
     localStorage.setItem("products", JSON.stringify(item));
     return item;
 };
 let products = localStorage.getItem("products") !== null ? JSON.parse(localStorage.getItem("products"))
-    : set_products(products_data);
+    : setProducts(productsData);
 //console.log(products);
 
 /////////////////////////////////////////////////////////////////////////////////////////
-let item_append = document.getElementById("products"), cart_indicator = document.getElementById("no_of_product")
-    , cart_products = document.getElementById("cart_products");
-const render_cards = (items) => {
+const itemAppend = document.getElementById("products"), cartIndicator = document.getElementById("no_of_product")
+    , cartProducts = document.getElementById("cart_products");
+const renderCardItems = (items) => {
     products = localStorage.getItem("products") !== null ? JSON.parse(localStorage.getItem("products"))
-        : set_products(products_data);
+        : setProducts(productsData);
     //console.log(items);
     let render_product = "", cart_count = 0, cart_product = "";
     for (let it of items) {
@@ -21,11 +21,11 @@ const render_cards = (items) => {
                 <div class="card">
                 <h1>${it.product_name}</h1>
                 <img src="images/${it.product_image}" alt="${it.product_name}" style="width:100%">
-                <button class="btn1" onClick="show_details(${it.id})">quick_view </button>
+                <button class="btn1" onClick="showModalOneItem(${it.id})">quick_view </button>
                 <h2>
                     ${it.product_price} $ 
                 </h2>
-                <button class="${it.added_to_cart ? 'btn3' : 'btn2'}" onClick="toggele_item_to_cart(${it.id})">
+                <button class="${it.added_to_cart ? 'btn3' : 'btn2'}" onClick="toggeleItemToCart(${it.id})">
                 ${it.added_to_cart ? 'Remove from Cart' : 'Add To Cart '}
                 </button>    
                 </div>
@@ -37,16 +37,16 @@ const render_cards = (items) => {
             cart_product += `<h3>${it.product_name} : ${it.product_price} $</h3>`
         }
     }
-    item_append.innerHTML = render_product;
-    cart_indicator.innerText = cart_count;
-    cart_products.innerHTML = cart_product;
+    itemAppend.innerHTML = render_product;
+    cartIndicator.innerText = cart_count;
+    cartProducts.innerHTML = cart_product;
 }
 
 ///////////////////////////////////////////////////////////////////////////
 
-render_cards(products);
+renderCardItems(products);
 /////////////////////////////////////////////
-window.toggele_item_to_cart = (item_id) => {
+window.toggeleItemToCart = (item_id) => {
     // console.log(item_id);
     let new_products = products.map((it) => {
         if (it.id === item_id) {
@@ -56,28 +56,28 @@ window.toggele_item_to_cart = (item_id) => {
         }
     });
     //console.log(new_products);
-    set_products(new_products);
-    render_cards(new_products);
+    setProducts(new_products);
+    renderCardItems(new_products);
 
 }
 ///////////////////////////////////////////////////////////////////////////
-window.show_details = (item_id) => {
+window.showModalOneItem = (item_id) => {
     document.getElementById("modal").style.display = "block";
     //console.log(item_id);
-    let one_product = products.filter((it) => {
+    let oneProduct = products.filter((it) => {
         return (it.id === item_id);
 
     })
-    // console.log(one_product);
+    // console.log(oneProduct);
     let product = `
-    <h1> ${one_product[0].product_name}</h1>
-    <img src="images/${one_product[0].product_image}" alt="gold-coin" style="width:100%">
+    <h1> ${oneProduct[0].product_name}</h1>
+    <img src="images/${oneProduct[0].product_image}" alt="${oneProduct[0].product_name}" style="width:100%">
     <h2>
-    ${one_product[0].product_price} $
+    ${oneProduct[0].product_price} $
     </h2>
                 <div  >
-                ${one_product[0].product_name} is 
-                ${one_product[0].added_to_cart ? ' Added To Cart' : 'Not Added To Cart '}
+                ${oneProduct[0].product_name} is 
+                ${oneProduct[0].added_to_cart ? ' Added To Cart' : 'Not Added To Cart '}
                  </div>   
     `;
     document.getElementById("modal_item").innerHTML = product;

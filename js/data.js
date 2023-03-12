@@ -1,4 +1,4 @@
-let products_data = [
+const productsData = [
     {
         id: 1,
         product_name: "Gold Coin",
@@ -41,4 +41,4 @@ let products_data = [
         added_to_cart: false
     }
 ];
-export default products_data;
+export default productsData;
