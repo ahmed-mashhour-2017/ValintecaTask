@@ -37,6 +37,9 @@ const renderCardItems = (items) => {
             cart_product += `<h3>${it.product_name} : ${it.product_price} $</h3>`
         }
     }
+    if (cart_count === 0) {
+        cart_product = `<h3> No Products Added</h3>`
+    }
     itemAppend.innerHTML = render_product;
     cartIndicator.innerText = cart_count;
     cartProducts.innerHTML = cart_product;
@@ -55,6 +58,7 @@ window.toggeleItemToCart = (item_id) => {
             return it;
         }
     });
+
     //console.log(new_products);
     setProducts(new_products);
     renderCardItems(new_products);
